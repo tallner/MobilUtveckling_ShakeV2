@@ -1,0 +1,4 @@
+What happens if API version is less than 23?
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    mySensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+}
