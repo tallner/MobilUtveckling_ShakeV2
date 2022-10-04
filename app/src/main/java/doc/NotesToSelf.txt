@@ -2,3 +2,24 @@ What happens if API version is less than 23?
 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
     mySensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 }
+
+ <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/xValue"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/yValue"
+        android:layout_marginTop="30sp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/zValue"
+        android:layout_marginTop="30sp"
+        />
+
+Warning:(45, 24) Do not concatenate text displayed with `setText`. Use resource string with placeholders.
