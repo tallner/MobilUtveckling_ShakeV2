@@ -12,8 +12,9 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
@@ -22,7 +23,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Sensor accelerometers;
 
     TextView xValue,yValue,zValue;
-    TextView testText;
+    EditText xSignedNumber,ySignedNumber,zSignedNumber;
+    Button xChip,yChip,zChip;
+
     ImageView testImage;
     boolean rotated = false;
     int i = 0;
@@ -35,6 +38,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         xValue = (TextView) findViewById(R.id.xValue);
         yValue = (TextView) findViewById(R.id.yValue);
         zValue = (TextView) findViewById(R.id.zValue);
+
+        xSignedNumber = (EditText) findViewById(R.id.xSignedNumber);
+        ySignedNumber = (EditText) findViewById(R.id.ySignedNumber);
+        zSignedNumber = (EditText) findViewById(R.id.zSignedNumber);
+
+        xChip = (Button) findViewById(R.id.xChip);
+        yChip = (Button) findViewById(R.id.yChip);
+        zChip = (Button) findViewById(R.id.zChip);
+
         testImage = (ImageView) findViewById(R.id.testImage);
 
 
@@ -55,7 +67,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         yValue.setText("yValue:" + sensorEvent.values[1]);
         zValue.setText("zValue:" + sensorEvent.values[2]);
 
-        //imageVertical = true;
+        xSignedNumber.setText("xValue:" + sensorEvent.values[0]);
+        ySignedNumber.setText("yValue:" + sensorEvent.values[1]);
+        zSignedNumber.setText("zValue:" + sensorEvent.values[2]);
+
+        xChip.setText("xValue:" + sensorEvent.values[0]);
+        yChip.setText("yValue:" + sensorEvent.values[1]);
+        zChip.setText("zValue:" + sensorEvent.values[2]);
 
         if ((abs(sensorEvent.values[0]) > 5f)&&(rotated==false)) {
            testImage.setRotation(90f);
