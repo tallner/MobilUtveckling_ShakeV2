@@ -3,6 +3,10 @@ package com.example.mobilutveckling_shakev2;
 import static java.lang.Math.abs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.app.FragmentManager;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -12,68 +16,89 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager mySensorManager;
     Sensor accelerometers;
 
-    TextView xValue,yValue,zValue;
-    EditText xSignedNumber,ySignedNumber,zSignedNumber;
-    Button xChip,yChip,zChip;
+    Button btnFragment1,btnFragment2,btnFragment3;
 
     ImageView testImage;
     boolean rotated = false;
     int i = 0;
+
+    FragmentManager fm;
+    Fragment1 frag1;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        xValue = (TextView) findViewById(R.id.xValue);
-        yValue = (TextView) findViewById(R.id.yValue);
-        zValue = (TextView) findViewById(R.id.zValue);
-
-        xSignedNumber = (EditText) findViewById(R.id.xSignedNumber);
-        ySignedNumber = (EditText) findViewById(R.id.ySignedNumber);
-        zSignedNumber = (EditText) findViewById(R.id.zSignedNumber);
-
-        xChip = (Button) findViewById(R.id.xChip);
-        yChip = (Button) findViewById(R.id.yChip);
-        zChip = (Button) findViewById(R.id.zChip);
-
-        testImage = (ImageView) findViewById(R.id.testImage);
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mySensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         }
         accelerometers = mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mySensorManager.registerListener(this,accelerometers,SensorManager.SENSOR_DELAY_NORMAL);
+
+        testImage = (ImageView) findViewById(R.id.testImage);
+        btnFragment1 = (Button) findViewById(R.id.btnFragment1);
+        btnFragment2 = (Button) findViewById(R.id.btnFragment2);
+        btnFragment3 = (Button) findViewById(R.id.btnFragment3);
+
+
+
+
+        btnFragment1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Fragment1 firstFragment = new Fragment1();
+                // Begin the transaction
+                androidx.fragment.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                // Replace the contents of the container with the new fragment
+                ft.replace(R.id.fragcont, firstFragment);
+                // Complete the changes added above
+                ft.commit();
+            }
+        });
+
+        btnFragment2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Fragment2 secondFragment = new Fragment2();
+                // Begin the transaction
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                // Replace the contents of the container with the new fragment
+                ft.replace(R.id.fragcont, secondFragment);
+                // Complete the changes added above
+                ft.commit();
+            }
+        });
+
+
+
+        btnFragment3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Fragment3 thirdFragment = new Fragment3();
+                // Begin the transaction
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                // Replace the contents of the container with the new fragment
+                ft.replace(R.id.fragcont, thirdFragment);
+                // Complete the changes added above
+                ft.commit();
+            }
+        });
+
+
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-       // Log.i("TestTag","onSensorChanged:X"+sensorEvent.values[0]);
-      //  Log.i("TestTag","onSensorChanged:Y"+sensorEvent.values[1]);
-      //  Log.i("TestTag","onSensorChanged:Z"+sensorEvent.values[2]);
-
-        xValue.setText("xValue:" + sensorEvent.values[0]);
-        yValue.setText("yValue:" + sensorEvent.values[1]);
-        zValue.setText("zValue:" + sensorEvent.values[2]);
-
-        xSignedNumber.setText("xValue:" + sensorEvent.values[0]);
-        ySignedNumber.setText("yValue:" + sensorEvent.values[1]);
-        zSignedNumber.setText("zValue:" + sensorEvent.values[2]);
-
-        xChip.setText("xValue:" + sensorEvent.values[0]);
-        yChip.setText("yValue:" + sensorEvent.values[1]);
-        zChip.setText("zValue:" + sensorEvent.values[2]);
 
         if ((abs(sensorEvent.values[0]) > 5f)&&(rotated==false)) {
            testImage.setRotation(90f);
