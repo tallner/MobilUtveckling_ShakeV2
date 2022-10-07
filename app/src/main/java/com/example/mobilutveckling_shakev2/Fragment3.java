@@ -51,8 +51,8 @@ public class Fragment3 extends Fragment implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         xValue.setText("xValue:" + sensorEvent.values[0]);
-        yValue.setText("xValue:" + sensorEvent.values[1]);
-        zValue.setText("xValue:" + sensorEvent.values[2]);
+        yValue.setText("yValue:" + sensorEvent.values[1]);
+        zValue.setText("zValue:" + sensorEvent.values[2]);
 
     }
 

@@ -41,14 +41,15 @@
 
     <ImageView
         android:id="@+id/testImage"
-        android:layout_width="300sp"
-        android:layout_height="300sp"
+        android:layout_width="333dp"
+        android:layout_height="358dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="348dp"
-        android:layout_marginEnd="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@drawable/java" />
 
     <FrameLayout
         android:id="@+id/fragcont"

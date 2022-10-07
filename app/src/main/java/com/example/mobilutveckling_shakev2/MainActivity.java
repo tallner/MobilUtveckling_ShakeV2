@@ -28,6 +28,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private ImageView testImage;
     private boolean rotated = false;
 
+    private enum Rotate {
+        UP,
+        DOWN,
+        RIGHT,
+        LEFT
+    }
+    private Rotate rotate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,16 +100,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
 
-        if ((abs(sensorEvent.values[0]) > 5f)&&(rotated==false)) {
-           testImage.setRotation(90f);
-            rotated = true;
-            Log.i("TestTag", "true");
-        }
-        if ((abs(sensorEvent.values[0]) < 5f)&&(rotated==true)) {
-            testImage.setRotation(0f);
-            rotated = false;
-            Log.i("TestTag", "false");
-        }
+        if ((sensorEvent.values[0]) > 8f) rotate = Rotate.RIGHT;
+        else if ((sensorEvent.values[0]) < -8f) rotate = Rotate.LEFT;
+        else if ((sensorEvent.values[1]) < -8f) rotate = Rotate.DOWN;
+        else rotate = Rotate.UP;
+
+        switch (rotate) {
+            case LEFT:
+                testImage.setRotation(-90f);
+                break;
+            case RIGHT:
+                testImage.setRotation(90f);
+                break;
+            case UP:
+                testImage.setRotation(0f);
+                break;
+            case DOWN:
+                testImage.setRotation(-180f);
+                break;
+            default:;
+        };
+
     }
 
     @Override
