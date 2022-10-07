@@ -3,10 +3,7 @@ package com.example.mobilutveckling_shakev2;
 import static java.lang.Math.abs;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.app.FragmentManager;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -24,17 +21,12 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager mySensorManager;
-    Sensor accelerometers;
+    private Sensor accelerometers;
 
-    Button btnFragment1,btnFragment2,btnFragment3;
+    private Button btnFragment1,btnFragment2,btnFragment3;
 
-    ImageView testImage;
-    boolean rotated = false;
-    int i = 0;
-
-    FragmentManager fm;
-    Fragment1 frag1;
-
+    private ImageView testImage;
+    private boolean rotated = false;
 
 
     @Override

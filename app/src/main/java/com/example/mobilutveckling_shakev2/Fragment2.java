@@ -16,14 +16,13 @@ import android.widget.TextView;
 
 public class Fragment2 extends Fragment  implements SensorEventListener {
 
-    SensorManager mySensorManager;
-    Sensor accelerometers;
-    TextView xValue;
-    TextView yValue;
-    TextView zValue;
+    private SensorManager mySensorManager;
+    private Sensor accelerometers;
+    private TextView xValue;
+    private TextView yValue;
+    private TextView zValue;
 
     public Fragment2(){
-
     }
 
     @Override

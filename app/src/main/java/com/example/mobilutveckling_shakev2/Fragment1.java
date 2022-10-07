@@ -6,32 +6,22 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-
 import androidx.fragment.app.Fragment;
 
-import androidx.annotation.Nullable;
 
 public class Fragment1 extends Fragment implements SensorEventListener {
-
-
-    SensorManager mySensorManager;
-    Sensor accelerometers;
-    TextView xValue;
-    TextView yValue;
-    TextView zValue;
-
-
+    private SensorManager mySensorManager;
+    private Sensor accelerometers;
+    private TextView xValue;
+    private TextView yValue;
+    private TextView zValue;
 
     public Fragment1(){
-
-
     }
 
     @Override
@@ -40,8 +30,6 @@ public class Fragment1 extends Fragment implements SensorEventListener {
         mySensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         accelerometers = mySensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mySensorManager.registerListener(this,accelerometers,SensorManager.SENSOR_DELAY_NORMAL);
-
-
 
         return inflater.inflate(R.layout.fragment1_layout,container,false);
     }
